@@ -15,28 +15,7 @@ import AppInput from "../components/AppInput";
 import AppButton from "../components/AppButton";
 import { calculateNights } from "../utils/calculateNights";
 import { COLORS, SIZES, SPACING, SHADOWS } from "../constaints/hotelTheme";
-
-interface Room {
-  name: string;
-  price: number;
-  image?: string;
-  size?: string;
-  bed?: string;
-}
-
-interface BookingFormData {
-  name: string;
-  phone: string;
-  email: string;
-  checkIn: string;
-  checkOut: string;
-}
-
-interface BookingData {
-  room: Room;
-  formData: BookingFormData;
-  totalPrice: number;
-}
+import { Room, BookingData } from "../types";
 
 interface BookingScreenProps {
   room: Room;

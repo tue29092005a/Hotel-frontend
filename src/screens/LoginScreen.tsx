@@ -10,11 +10,7 @@ import AppText from "../components/AppText";
 import AppInput from "../components/AppInput";
 import AppButton from "../components/AppButton";
 import { COLORS, SIZES, SHADOWS, FONTS, SPACING } from "../constaints/hotelTheme";
-
-interface User {
-  userID: string;
-  name: string;
-}
+import { User } from "../types";
 
 interface LoginScreenProps {
   onLogin: (user: User) => void;

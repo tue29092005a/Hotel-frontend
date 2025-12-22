@@ -5,38 +5,7 @@ import BookingScreen from "../screens/BookingScreen";
 import BookingSuccessScreen from "../screens/BookingSuccessScreen";
 import HistoryScreen from "../screens/HistoryScreen";
 import SignupScreen from "../screens/SignupScreen";
-
-type ScreenName = "login" | "signup" | "search" | "booking" | "history" | "success";
-
-interface User {
-  userID: string;
-  name: string;
-}
-
-interface Room {
-  id?: string | number;
-  name: string;
-  image?: string;
-  size?: string;
-  bed?: string;
-  view?: string;
-  price: number;
-  capacity: number;
-}
-
-interface BookingFormData {
-  name: string;
-  phone: string;
-  email: string;
-  checkIn: string;
-  checkOut: string;
-}
-
-interface BookingData {
-  room: Room;
-  formData: BookingFormData;
-  totalPrice: number;
-}
+import { User, Room, BookingData, ScreenName } from "../types";
 
 const AppNavigator: React.FC = () => {
   const [currentScreen, setCurrentScreen] = useState<ScreenName>("login");

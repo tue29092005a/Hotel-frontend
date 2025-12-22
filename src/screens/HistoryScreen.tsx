@@ -3,24 +3,7 @@ import { View, FlatList, StyleSheet, TouchableOpacity, SafeAreaView } from 'reac
 import AppText from '../components/AppText';
 import AppButton from '../components/AppButton';
 import { COLORS, SIZES, SPACING, SHADOWS } from '../constaints/hotelTheme';
-
-interface User {
-  userID: string;
-  name: string;
-}
-
-interface Room {
-  name: string;
-  price: number;
-}
-
-interface BookingRecord {
-  _id: string;
-  room: Room;
-  formData: { name: string };
-  createdAt: string;
-  status: string;
-}
+import { User, BookingHistoryItem } from '../types';
 
 interface HistoryScreenProps {
   onBack: () => void;
@@ -28,7 +11,7 @@ interface HistoryScreenProps {
 }
 
 const HistoryScreen: React.FC<HistoryScreenProps> = ({ onBack, user }) => {
-  const [history, setHistory] = useState<BookingRecord[]>([]);
+  const [history, setHistory] = useState<BookingHistoryItem[]>([]);
   console.log(user.userID);
 
   const fetchHistory = async (): Promise<void> => {
@@ -39,7 +22,7 @@ const HistoryScreen: React.FC<HistoryScreenProps> = ({ onBack, user }) => {
         throw new Error((data as { message?: string }).message || 'Get history failed');
       }
       console.log(data);
-      setHistory(data as BookingRecord[]);
+      setHistory(data as BookingHistoryItem[]);
     } catch (error) {
       console.log('Lỗi lấy lịch sử:', error);
     }
@@ -49,7 +32,7 @@ const HistoryScreen: React.FC<HistoryScreenProps> = ({ onBack, user }) => {
     fetchHistory();
   }, []);
 
-  const renderItem = ({ item }: { item: BookingRecord }) => (
+  const renderItem = ({ item }: { item: BookingHistoryItem }) => (
     (console.log(item),
     <View style={[styles.card, { ...SHADOWS.light }]}>
       <AppText variant="body" color={COLORS.textDark} style={{ fontWeight: "600", marginBottom: SPACING.md }}>

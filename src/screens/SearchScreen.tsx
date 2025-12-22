@@ -15,27 +15,10 @@ import AppText from "../components/AppText";
 import AppInput from "../components/AppInput";
 import AppButton from "../components/AppButton";
 import { COLORS, SIZES, SPACING, SHADOWS } from "../constaints/hotelTheme";
+import { User, Room, ScreenName } from "../types";
 
 const { width } = Dimensions.get("window");
 const CARD_WIDTH = (width - 40 - 15) / 2;
-
-interface User {
-  userID: string;
-  name: string;
-}
-
-interface Room {
-  id?: string | number;
-  name: string;
-  image: string;
-  size: string;
-  bed: string;
-  view: string;
-  price: number;
-  capacity: number;
-}
-
-type ScreenName = "login" | "signup" | "search" | "booking" | "history" | "success";
 
 interface SearchScreenProps {
   user: User;
