@@ -1,6 +1,8 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import CustomTabBar from './CustomTabBar';
+import { View, StyleSheet } from 'react-native';
+import Ionicons from '@react-native-vector-icons/ionicons';
+import { COLORS, SIZES, SHADOWS, SPACING } from '../constaints/hotelTheme';
 import SearchScreen from '../screens/SearchScreen';
 import UserProfileScreen from '../screens/userprofile/UserProfileScreen';
 import DashboardScreen from '../screens/DashboardScreen';
@@ -58,8 +60,46 @@ const BottomTabNavigator: React.FC<BottomTabNavigatorProps> = ({ onSelectRoom, c
 
   return (
     <Tab.Navigator
-      tabBar={(props) => <CustomTabBar {...props} />}
-      screenOptions={{ headerShown: false }}
+      screenOptions={({ route }) => ({
+        headerShown: false,
+        tabBarShowLabel: true,
+        tabBarActiveTintColor: COLORS.textDark,
+        tabBarInactiveTintColor: COLORS.textLight,
+        tabBarStyle: styles.tabBar,
+        tabBarLabelStyle: styles.tabBarLabel,
+        tabBarIcon: ({ focused, color, size }) => {
+          // Map route name to Ionicons outline icons
+          let iconName: string = 'ellipse-outline';
+          switch (route.name) {
+            case 'Search':
+              iconName = 'search-outline';
+              break;
+            case 'Saved':
+              iconName = 'heart-outline';
+              break;
+            case 'Bookings':
+              iconName = 'calendar-outline';
+              break;
+            case 'Profile':
+              iconName = 'person-outline';
+              break;
+            default:
+              iconName = 'ellipse-outline';
+          }
+
+          // Active: icon inside a light-gray circular background
+          if (focused) {
+            return (
+              <View style={styles.iconCircle}>
+                <Ionicons name={iconName as never} size={22} color={color} />
+              </View>
+            );
+          }
+
+          // Inactive: icon only, no background
+          return <Ionicons name={iconName as never} size={22} color={color} />;
+        },
+      })}
     >
       {TAB_CONFIG.map((tab) => (
         <Tab.Screen
@@ -77,3 +117,28 @@ const BottomTabNavigator: React.FC<BottomTabNavigatorProps> = ({ onSelectRoom, c
 };
 
 export default BottomTabNavigator;
+
+const styles = StyleSheet.create({
+  tabBar: {
+    position: 'absolute',
+    height: SIZES.base * 8, 
+    marginHorizontal: SPACING.xl, 
+    marginBottom: SPACING.md, 
+    borderRadius: SIZES.base * 4,
+    backgroundColor: COLORS.white,
+    ...SHADOWS.medium,
+  },
+  tabBarLabel: {
+    fontSize: SIZES.body4, 
+    marginBottom: SIZES.base, 
+    color: COLORS.text,
+  },
+  iconCircle: {
+    width: SIZES.base * 4 + 4, 
+    height: SIZES.base * 4 + 4, 
+    borderRadius: (SIZES.base * 4 + 4) / 2,
+    backgroundColor: COLORS.border, 
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
