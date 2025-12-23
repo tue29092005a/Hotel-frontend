@@ -216,7 +216,7 @@ const HistoryScreen: React.FC<HistoryScreenProps> = ({ onBack, user }) => {
       <View style={[styles.header, { backgroundColor: COLORS.primary, paddingHorizontal: responsive.headerPaddingH }]}>
         <View style={styles.headerTop}>
           <AppButton
-            title="← Back"
+            title="Back"
             onPress={onBack}
             style={styles.backButton}
           />
@@ -279,10 +279,10 @@ const styles = StyleSheet.create({
     marginBottom: SPACING.md,
   },
   backButton: { 
-    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+    backgroundColor: COLORS.lightBlue,
     width: 100,
     borderWidth: 1,
-    borderColor: COLORS.white,
+    borderColor: COLORS.transparent,
   },
   headerTitle: {
     fontWeight: 'bold',
