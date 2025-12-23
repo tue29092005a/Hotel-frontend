@@ -15,6 +15,8 @@ import { useRoute } from "@react-navigation/native";
 import AppText from "../components/AppText";
 import AppInput from "../components/AppInput";
 import AppButton from "../components/AppButton";
+import BookingList from "../components/dashboard/BookingList";
+import { mockBookings } from "../data/mockBookings";
 import { COLORS, SIZES, SPACING, SHADOWS } from "../constaints/hotelTheme";
 
 const { width } = Dimensions.get("window");
@@ -242,6 +244,8 @@ const SearchScreen: React.FC<SearchScreenProps> = ({ user, onSelectRoom, onNavig
             </View>
           </View>
         </View>
+
+        <BookingList bookings={mockBookings} />
 
         <AppText variant="subtitle" color={COLORS.textDark} style={{ marginBottom: SPACING.md }}>
           Recommended Rooms

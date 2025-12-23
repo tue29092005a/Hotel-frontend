@@ -5,7 +5,6 @@ import Ionicons from '@react-native-vector-icons/ionicons';
 import { COLORS, SIZES, SHADOWS, SPACING } from '../constaints/hotelTheme';
 import SearchScreen from '../screens/SearchScreen';
 import UserProfileScreen from '../screens/userprofile/UserProfileScreen';
-import DashboardScreen from '../screens/DashboardScreen';
 import PlaceholderScreen from '../screens/PlaceholderScreen';
 
 const Tab = createBottomTabNavigator();
@@ -47,10 +46,6 @@ const BottomTabNavigator: React.FC<BottomTabNavigatorProps> = ({ onSelectRoom, c
     {
       name: 'Saved',
       component: () => <PlaceholderScreen title="Saved" />,
-    },
-    {
-      name: 'Bookings',
-      component: DashboardScreen,
     },
     {
       name: 'Profile',
