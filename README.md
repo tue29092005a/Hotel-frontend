@@ -1,21 +1,37 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# 🏨 Quản lý Khách sạn - React Native App
 
-# Getting Started
+Đây là tài liệu hướng dẫn nhanh cho các thành viên trong nhóm.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+## 🚀 Cập nhật quan trọng (So với code của Tùng)
 
-## Step 1: Start Metro
+Phiên bản này đã được nâng cấp để giải quyết các lỗi xung đột thư viện (`ERESOLVE`):
+- **React Native**: `0.76.x` -> `0.82.1`
+- **React**: `18.x` -> `19.1.1`
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+Do đây là một bước nhảy phiên bản lớn, tất cả các thành viên **BẮT BUỘC** phải thực hiện cài đặt lại từ đầu để đồng bộ môi trường.
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+## ⚙️ Hướng dẫn cài đặt (Bắt buộc)
+
+Để tránh xung đột, hãy làm theo các bước sau:
 
 ```sh
-# Using npm
-npm start
+# 1. Lấy code mới nhất từ nhánh chính (main/master)
+git pull origin main
 
-# OR using Yarn
-yarn start
+# 2. Xóa sạch sẽ các thư viện và file lock cũ
+# Đối với macOS / Linux
+rm -rf node_modules
+rm -f package-lock.json
+
+# Đối với Windows (PowerShell)
+Remove-Item -Recurse -Force node_modules -ErrorAction SilentlyContinue
+Remove-Item -Force package-lock.json -ErrorAction SilentlyContinue
+
+# 3. Xóa cache của npm
+npm cache clean --force
+
+# 4. Cài đặt lại toàn bộ thư viện
+npm install
 ```
 
 ## Step 2: Build and run your app
