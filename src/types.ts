@@ -1,6 +1,7 @@
 export interface User {
     userID: string;
     name: string;
+    email?: string;
 }
 
 export interface Room {
@@ -31,9 +32,13 @@ export interface BookingData {
 export interface BookingHistoryItem {
     _id: string;
     room: Room;
-    formData: { name: string };
+    formData: {
+        name: string;
+        checkIn: string;
+        checkOut: string;
+    };
     createdAt: string;
     status: string;
 }
 
-export type ScreenName = "login" | "signup" | "search" | "booking" | "history" | "success";
+export type ScreenName = "login" | "signup" | "search" | "booking" | "history" | "success" | "MyBookings";

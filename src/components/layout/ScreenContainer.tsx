@@ -1,24 +1,25 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet, View, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
+import { SafeAreaView, StyleSheet, View, KeyboardAvoidingView, Platform, ScrollView, ViewStyle } from 'react-native';
 import { COLORS } from '../../constaints/hotelTheme';
 
 interface Props {
     children: React.ReactNode;
     withScroll?: boolean;
+    style?: ViewStyle;
 }
 
-const ScreenContainer = ({ children, withScroll = true }: Props) => {
+const ScreenContainer = ({ children, withScroll = true, style }: Props) => {
     const Container: any = withScroll ? ScrollView : View;
 
     return (
-        <SafeAreaView style={styles.safeArea}>
+        <SafeAreaView style={[styles.safeArea, style]}>
             <KeyboardAvoidingView
                 behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
                 style={styles.flex}
             >
                 <Container
                     style={styles.flex}
-                    contentContainerStyle={{ padding: 16 }}
+                    contentContainerStyle={withScroll ? { padding: 16 } : undefined}
                     showsVerticalScrollIndicator={false}
                 >
                     {children}

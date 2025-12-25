@@ -4,7 +4,6 @@ import {
   Image,
   StyleSheet,
   ScrollView,
-  SafeAreaView,
   TouchableOpacity,
   Platform,
   Alert
@@ -16,6 +15,7 @@ import AppButton from "../components/AppButton";
 import { calculateNights } from "../utils/calculateNights";
 import { COLORS, SIZES, SPACING, SHADOWS } from "../constaints/hotelTheme";
 import { Room, BookingData } from "../types";
+import ScreenContainer from "../components/layout/ScreenContainer";
 
 interface BookingScreenProps {
   room: Room;
@@ -95,7 +95,7 @@ const BookingScreen: React.FC<BookingScreenProps> = ({ room, searchData, onConfi
   const capacityPreview = searchData?.capacity || "2";
 
   return (
-    <SafeAreaView style={[styles.container, { backgroundColor: "#FAFAF9" }]}>
+    <ScreenContainer withScroll={false} style={{ backgroundColor: "#FAFAF9" }}>
       <ScrollView contentContainerStyle={styles.scrollContent}>
         <AppText variant="title" color={COLORS.textDark} style={{ marginBottom: SPACING.lg }}>
           Booking Details
@@ -126,7 +126,7 @@ const BookingScreen: React.FC<BookingScreenProps> = ({ room, searchData, onConfi
           <AppText variant="body" color={COLORS.textDark} style={{ fontWeight: "600", marginBottom: SPACING.md }}>
             Thông tin khách hàng
           </AppText>
-          <AppInput           
+          <AppInput
             placeholder="Tên khách"
             value={name}
             onChangeText={setName}
@@ -198,13 +198,13 @@ const BookingScreen: React.FC<BookingScreenProps> = ({ room, searchData, onConfi
           </View>
         </View>
       </ScrollView>
-    </SafeAreaView>
+    </ScreenContainer>
   );
 };
 
 const styles = StyleSheet.create({
   container: { flex: 1 },
-  scrollContent: { paddingTop: SPACING.xl*2, paddingHorizontal: SIZES.padding, paddingBottom: SPACING.xxl },
+  scrollContent: { paddingTop: SPACING.xl * 2, paddingHorizontal: SIZES.padding, paddingBottom: SPACING.xxl },
   card: {
     borderRadius: SIZES.radiusLarge,
     padding: SPACING.md,
@@ -221,7 +221,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginBottom: SPACING.md,
   },
-  buttonGroup: {  },
+  buttonGroup: {},
 });
 
 export default BookingScreen;

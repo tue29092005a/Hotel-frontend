@@ -3,13 +3,14 @@ import {
   View,
   TouchableOpacity,
   StyleSheet,
-  SafeAreaView,
   Alert
 } from "react-native";
 import AppText from "../components/AppText";
 import AppInput from "../components/AppInput";
 import AppButton from "../components/AppButton";
 import { COLORS, SIZES, SPACING } from "../constaints/hotelTheme";
+
+import ScreenContainer from "../components/layout/ScreenContainer";
 
 type SignupScreenProps = {
   onBackToLogin: () => void;
@@ -68,7 +69,7 @@ export default function SignupScreen({
   };
 
   return (
-    <SafeAreaView style={[styles.container, { backgroundColor: COLORS.white }]}>
+    <ScreenContainer>
       <View style={styles.contentContainer}>
         <View style={styles.header}>
           <View style={[styles.iconCircle, { backgroundColor: COLORS.border }]}>
@@ -134,7 +135,7 @@ export default function SignupScreen({
             title="Sign Up"
             onPress={handleSignup}
             fullWidth
-            
+
             style={{ marginTop: SIZES.padding }}
           />
         </View>
@@ -148,7 +149,7 @@ export default function SignupScreen({
           </AppText>
         </TouchableOpacity>
       </View>
-    </SafeAreaView>
+    </ScreenContainer>
   );
 }
 

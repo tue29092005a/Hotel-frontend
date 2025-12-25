@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { View, FlatList, StyleSheet, TouchableOpacity, SafeAreaView } from 'react-native';
+import { View, FlatList, StyleSheet } from 'react-native';
 import AppText from '../components/AppText';
 import AppButton from '../components/AppButton';
 import { COLORS, SIZES, SPACING, SHADOWS } from '../constaints/hotelTheme';
 import { User, BookingHistoryItem } from '../types';
+import ScreenContainer from '../components/layout/ScreenContainer';
 
 interface HistoryScreenProps {
   onBack: () => void;
@@ -12,7 +13,6 @@ interface HistoryScreenProps {
 
 const HistoryScreen: React.FC<HistoryScreenProps> = ({ onBack, user }) => {
   const [history, setHistory] = useState<BookingHistoryItem[]>([]);
-  console.log(user.userID);
 
   const fetchHistory = async (): Promise<void> => {
     try {
@@ -21,7 +21,6 @@ const HistoryScreen: React.FC<HistoryScreenProps> = ({ onBack, user }) => {
       if (!res.ok) {
         throw new Error((data as { message?: string }).message || 'Get history failed');
       }
-      console.log(data);
       setHistory(data as BookingHistoryItem[]);
     } catch (error) {
       console.log('Lỗi lấy lịch sử:', error);
@@ -33,7 +32,6 @@ const HistoryScreen: React.FC<HistoryScreenProps> = ({ onBack, user }) => {
   }, []);
 
   const renderItem = ({ item }: { item: BookingHistoryItem }) => (
-    (console.log(item),
     <View style={[styles.card, { ...SHADOWS.light }]}>
       <AppText variant="body" color={COLORS.textDark} style={{ fontWeight: "600", marginBottom: SPACING.md }}>
         Phòng: {item.room.name}
@@ -50,11 +48,11 @@ const HistoryScreen: React.FC<HistoryScreenProps> = ({ onBack, user }) => {
       <AppText variant="caption" color={COLORS.text}>
         Trang thái: {item.status}
       </AppText>
-    </View>)
+    </View>
   );
 
   return (
-    <SafeAreaView style={[styles.container, { backgroundColor: COLORS.screenBackGround }]}>
+    <ScreenContainer withScroll={false} style={{ backgroundColor: COLORS.screenBackGround }}>
       <View style={styles.header}>
         <AppButton
           title="← Back"
@@ -71,13 +69,13 @@ const HistoryScreen: React.FC<HistoryScreenProps> = ({ onBack, user }) => {
         keyExtractor={(item) => item._id}
         contentContainerStyle={styles.listContent}
       />
-    </SafeAreaView>
+    </ScreenContainer>
   );
 };
 
 const styles = StyleSheet.create({
   container: { flex: 1 },
-  header: { paddingHorizontal: SIZES.padding, paddingVertical: SPACING.md,paddingTop: SIZES.padding*2.5 },
+  header: { paddingHorizontal: SIZES.padding, paddingVertical: SPACING.md, paddingTop: SIZES.padding * 2.5 },
   backButton: { backgroundColor: COLORS.primary, width: 100 },
   title: { paddingHorizontal: SIZES.padding, marginBottom: SPACING.lg },
   card: {

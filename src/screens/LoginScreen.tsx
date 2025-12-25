@@ -3,7 +3,6 @@ import {
   View,
   TouchableOpacity,
   StyleSheet,
-  SafeAreaView,
   Alert,
 } from "react-native";
 import AppText from "../components/AppText";
@@ -11,6 +10,7 @@ import AppInput from "../components/AppInput";
 import AppButton from "../components/AppButton";
 import { COLORS, SIZES, SHADOWS, FONTS, SPACING } from "../constaints/hotelTheme";
 import { User } from "../types";
+import ScreenContainer from "../components/layout/ScreenContainer";
 
 interface LoginScreenProps {
   onLogin: (user: User) => void;
@@ -55,7 +55,7 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ onLogin, onSignup }) => {
   };
 
   return (
-    <SafeAreaView style={[styles.container, { backgroundColor: COLORS.background }]}>
+    <ScreenContainer>
       <View style={styles.contentContainer}>
         <View style={styles.header}>
           <View style={[styles.iconCircle, { backgroundColor: COLORS.border }]}>
@@ -103,7 +103,7 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ onLogin, onSignup }) => {
             title="Sign In"
             onPress={handleSubmit}
             fullWidth
-            
+
             style={{ marginTop: SIZES.padding }}
           />
         </View>
@@ -119,7 +119,7 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ onLogin, onSignup }) => {
           </TouchableOpacity>
         </View>
 
-        <View style={[styles.demoBox, { backgroundColor: COLORS.lightGray, padding: SPACING.lg, borderWidth:1, borderColor:COLORS.lightBlue }]}>
+        <View style={[styles.demoBox, { backgroundColor: COLORS.lightGray, padding: SPACING.lg, borderWidth: 1, borderColor: COLORS.lightBlue }]}>
           <AppText variant="body" color={COLORS.textDark} style={{ fontWeight: "600", marginBottom: SPACING.xs }}>
             Demo Credentials:
           </AppText>
@@ -131,7 +131,7 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ onLogin, onSignup }) => {
           </AppText>
         </View>
       </View>
-    </SafeAreaView>
+    </ScreenContainer>
   );
 };
 

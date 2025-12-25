@@ -1,9 +1,10 @@
 import React from "react";
-import { View, TouchableOpacity, StyleSheet, SafeAreaView, ScrollView } from "react-native";
+import { View, TouchableOpacity, StyleSheet, ScrollView } from "react-native";
 import AppText from "../components/AppText";
 import AppButton from "../components/AppButton";
 import { calculateNights } from "../utils/calculateNights";
 import { COLORS, SIZES, SPACING } from "../constaints/hotelTheme";
+import ScreenContainer from "../components/layout/ScreenContainer";
 
 interface Room {
   name: string;
@@ -34,7 +35,7 @@ const BookingSuccessScreen: React.FC<BookingSuccessScreenProps> = ({ booking, on
   const mockBookingID = "BK" + Math.random().toString(36).substr(2, 9).toUpperCase();
 
   return (
-    <SafeAreaView style={[styles.container, { backgroundColor: COLORS.white }]}>
+    <ScreenContainer withScroll={false}>
       <ScrollView contentContainerStyle={styles.scrollContent}>
         <View style={styles.headerContainer}>
           <View style={[styles.iconCircle, { backgroundColor: COLORS.success + "20" }]}>
@@ -101,7 +102,7 @@ const BookingSuccessScreen: React.FC<BookingSuccessScreenProps> = ({ booking, on
           </View>
           <View style={[styles.divider, { backgroundColor: COLORS.border }]} />
           <View style={styles.row}>
-            <AppText variant="caption" color={COLORS.primary} style={{ fontWeight: "600",fontSize:20 }}>
+            <AppText variant="caption" color={COLORS.primary} style={{ fontWeight: "600", fontSize: 20 }}>
               Total:
             </AppText>
             <AppText variant="subtitle" color={COLORS.primary}>
@@ -119,13 +120,13 @@ const BookingSuccessScreen: React.FC<BookingSuccessScreenProps> = ({ booking, on
           />
         </View>
       </ScrollView>
-    </SafeAreaView>
+    </ScreenContainer>
   );
 };
 
 const styles = StyleSheet.create({
   container: { flex: 1 },
-  scrollContent: { paddingHorizontal: SIZES.padding, alignItems: "center", paddingTop: SPACING.xxl*2, paddingBottom: SPACING.xxl },
+  scrollContent: { paddingHorizontal: SIZES.padding, alignItems: "center", paddingTop: SPACING.xxl * 2, paddingBottom: SPACING.xxl },
   headerContainer: { alignItems: "center", marginBottom: SPACING.xxl },
   iconCircle: { width: 80, height: 80, borderRadius: 40, justifyContent: "center", alignItems: "center", marginBottom: SPACING.lg },
   title: { marginBottom: SPACING.md },

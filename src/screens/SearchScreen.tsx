@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import {
   View,
   Image,
-  SafeAreaView,
   ScrollView,
   Dimensions,
   Platform,
@@ -16,6 +15,7 @@ import AppInput from "../components/AppInput";
 import AppButton from "../components/AppButton";
 import { COLORS, SIZES, SPACING, SHADOWS } from "../constaints/hotelTheme";
 import { User, Room, ScreenName } from "../types";
+import ScreenContainer from "../components/layout/ScreenContainer";
 
 const { width } = Dimensions.get("window");
 const CARD_WIDTH = (width - 40 - 15) / 2;
@@ -77,7 +77,7 @@ const SearchScreen: React.FC<SearchScreenProps> = ({ user, onSelectRoom, onNavig
   }) : [];
 
   return (
-    <SafeAreaView style={[styles.container, { backgroundColor: COLORS.screenBackGround }]}>
+    <ScreenContainer withScroll={false}>
       <StatusBar backgroundColor={COLORS.primary} barStyle="light-content" />
       <View style={[styles.header, { backgroundColor: COLORS.primary }]}>
         <View style={styles.headerContent}>
@@ -95,7 +95,7 @@ const SearchScreen: React.FC<SearchScreenProps> = ({ user, onSelectRoom, onNavig
             />
             <AppButton
               title="View History"
-              onPress={() => onNavigate && onNavigate("history")}
+              onPress={() => onNavigate && onNavigate("MyBookings")}
               style={styles.historyButton}
             />
           </View>
@@ -242,18 +242,18 @@ const SearchScreen: React.FC<SearchScreenProps> = ({ user, onSelectRoom, onNavig
           </View>
         )}
       </ScrollView>
-    </SafeAreaView>
+    </ScreenContainer>
   );
 };
 
 const styles = StyleSheet.create({
   container: { flex: 1 },
-  header: { paddingHorizontal: SIZES.padding, paddingTop: Platform.OS === "android" ? SPACING.lg*2 : SPACING.sm, justifyContent: "flex-start", paddingBottom: SPACING.lg },
+  header: { paddingHorizontal: SIZES.padding, paddingTop: Platform.OS === "android" ? SPACING.lg * 2 : SPACING.sm, justifyContent: "flex-start", paddingBottom: SPACING.lg },
   headerContent: { marginTop: SPACING.lg },
   buttonRow: { flexDirection: "row", marginTop: SPACING.md, gap: SPACING.md },
-  reloadButton: { flex: 1, paddingVertical: SPACING.md,backgroundColor: COLORS.lightBlue, borderWidth: 1, borderColor: COLORS.transparent },
+  reloadButton: { flex: 1, paddingVertical: SPACING.md, backgroundColor: COLORS.lightBlue, borderWidth: 1, borderColor: COLORS.transparent },
   historyButton: { flex: 1, paddingVertical: SPACING.md, backgroundColor: COLORS.lightBlue, borderWidth: 1, borderColor: COLORS.transparent },
-  scrollContent: { paddingHorizontal: SIZES.padding, paddingBottom: SPACING.xxl, paddingTop: SIZES.padding*2 },
+  scrollContent: { paddingHorizontal: SIZES.padding, paddingBottom: SPACING.xxl, paddingTop: SIZES.padding * 2 },
   searchCard: { backgroundColor: COLORS.white, borderRadius: SIZES.radiusLarge, padding: SIZES.padding, marginTop: -SPACING.lg, marginBottom: SPACING.xl, zIndex: 10 },
   inputGroup: { marginBottom: SPACING.md },
   row: { flexDirection: "row" },
